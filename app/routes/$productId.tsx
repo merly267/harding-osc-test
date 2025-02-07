@@ -2,6 +2,8 @@ import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { request, gql } from "graphql-request"
 
+import styles from "../styles/product.module.css"
+
 export async function loader() {
   const query = gql`
     {
@@ -45,12 +47,12 @@ export default function IndexRoute() {
   return (
     <>
       {/* {JSON.stringify(product)} */}
-      <main>
+      <main className={styles.product}>
         <h1>{product.title}</h1>
         <img src={product.featuredImage.url} alt={product.title} />
 
-        <p>{product.description}</p>
-        <div>
+        <p className={styles.description}>{product.description}</p>
+        <div className={styles.price}>
           {price.amount} {price.currencyCode}
         </div>
       </main>
