@@ -6,12 +6,12 @@
 
   @media (min-width: 30em) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: min-content min-content 1fr;
     grid-template-areas:
-      "title title"
-      "image description"
-      "image price";
+      "title title title"
+      "image description description"
+      "image price add";
     padding: 2rem;
     gap: 2rem;
   }
@@ -34,4 +34,15 @@
 .price {
   grid-area: price;
   font-size: 1.2rem;
+}
+
+.add {
+  grid-area: add;
+  max-height: fit-content;
+  padding: 0.2rem;
+  border: 1px solid grey;
+  &:hover,
+  &:active {
+    opacity: 0.7;
+  }
 }

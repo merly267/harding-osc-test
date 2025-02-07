@@ -39,14 +39,12 @@ export async function loader() {
 }
 
 export default function IndexRoute() {
-  const response = useLoaderData()
+  const response = useLoaderData<typeof loader>()
   const product = response.product
   const price = product.variants.edges[0].node.price
-  // console.log(product.variants.edges[0].node.price.amount)
 
   return (
     <>
-      {/* {JSON.stringify(product)} */}
       <main className={styles.product}>
         <h1>{product.title}</h1>
         <img src={product.featuredImage.url} alt={product.title} />
@@ -55,6 +53,7 @@ export default function IndexRoute() {
         <div className={styles.price}>
           {price.amount} {price.currencyCode}
         </div>
+        <button className={styles.add}>Add to basket</button>
       </main>
     </>
   )
