@@ -13,6 +13,22 @@ export async function loader() {
           id
           url
         }
+        variants(first: 3) {
+          edges {
+            cursor
+            node {
+              id
+              title
+              image {
+                url
+              }
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
       }
     }
   `
@@ -22,6 +38,22 @@ export async function loader() {
 
 export default function IndexRoute() {
   const response = useLoaderData()
+  const product = response.product
+  const price = product.variants.edges[0].node.price
+  // console.log(product.variants.edges[0].node.price.amount)
 
-  return <>{JSON.stringify(response)}</>
+  return (
+    <>
+      {/* {JSON.stringify(product)} */}
+      <main>
+        <h1>{product.title}</h1>
+        <img src={product.featuredImage.url} alt={product.title} />
+
+        <p>{product.description}</p>
+        <div>
+          {price.amount} {price.currencyCode}
+        </div>
+      </main>
+    </>
+  )
 }
