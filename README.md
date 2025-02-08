@@ -1,8 +1,16 @@
-# Welcome to Remix!
+# OSC technical test
 
-- 📖 [Remix docs](https://remix.run/docs)
+## Project overview
 
-## Development
+Product page using information from https://mock.shop/ at http://localhost:5173/7982905098262, with a fake navigation at the top containing a persistent basket.
+
+## Setup instructions
+
+```shellscript
+npm install
+```
+
+### Development
 
 Run the dev server:
 
@@ -10,31 +18,13 @@ Run the dev server:
 npm run dev
 ```
 
-## Deployment
+## Technical decisions and reasoning
 
-First, build your app for production:
+- I decided to use Remix.run, as that was mentioned in the brief, I've wanted to learn more about Remix for a while, and I thought its nested UI/route setup could be an interesting way to handle the mini basket. In hindsight this maybe wasn't the best approach to a timed exercise! But Remix was enjoyable to work with, even if everything was slower and more exploratory. I used `npx create-remix@latest` to create the app.
 
-```sh
-npm run build
-```
+## Potential improvements if given more time
 
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+- Move the GraphQL query into a separate component, get a selection of products, and pass the params to the product page component (and type the response)
+- Unit test to check the query is returning what is expected
+- Implement the basket. I like the idea of form actions and coupling routes with components in Remix, but found it hard to map that onto where I could replace traditional React state management. I felt like the way to do it would be to set up a basket route and use form actions to update that from the other product page.. but.. for the mini-basket, I don't want to change the route, and the component is tied to the route, so maybe would need to have it as a separate component and manage the state with React Context or similar anyway..
+- Sort the styles out
