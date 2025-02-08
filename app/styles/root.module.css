@@ -7,3 +7,13 @@
     padding: 1rem;
   }
 }
+
+.basket {
+  position: fixed;
+  border: 1px solid grey;
+  display: none;
+}
+
+.visible {
+  display: block;
+}

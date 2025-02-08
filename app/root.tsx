@@ -5,6 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
+import { useState } from "react"
 import type { LinksFunction } from "@remix-run/node"
 import styles from "./styles/root.module.css"
 
@@ -24,6 +25,10 @@ export const links: LinksFunction = () => [
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [basketVisible, setBasketVisible] = useState(false)
+  const toggleBasket = () => {
+    setBasketVisible(!basketVisible)
+  }
   return (
     <html lang="en">
       <head>
@@ -38,9 +43,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <li>Home</li>
             <li>Products</li>
             <li>About</li>
-            <li>Basket</li>
+            <li>
+              <button onClick={toggleBasket}>Basket</button>
+            </li>
           </ul>
         </nav>
+        <section
+          className={`${styles.basket} ${
+            basketVisible ? styles.visible : null
+          }`}
+        >
+          basket things
+        </section>
         {children}
         <ScrollRestoration />
         <Scripts />
